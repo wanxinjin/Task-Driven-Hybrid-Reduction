@@ -53,7 +53,7 @@ The codes have been tested and run smoothly with Python 3.9 on MacBook Pro (Appl
 
 ---
 
-### 3 **Model Reduction for Synthetic Hybrid Systems (Section VI in the paper)**
+### 3 **Model Reduction for Synthetic Hybrid Systems (see Section VI in the paper)**
 
 #### **[examples/lcs/lcs_example1](./examples/lcs/lcs_example1)**: Illustration of Learning Progress (see Section VI.C.1): 
 
@@ -85,7 +85,7 @@ with different scripts
 - `single_plot_loss.py`: plot the reduced-order mpc policy rollout (see Fig. 3 in the paper)
 - `multiple_analysis_comp_***.py`: analyze and compare the learned reduced-order MPC policy versus random policy (see Table II in the paper)
 
-#### **[examples/lcs/lcs_example3](./examples/lcs/lcs_example2)**: Effect of Hyperparameter Settings (Section VI.D)
+#### **[examples/lcs/lcs_example3](./examples/lcs/lcs_example2)**: Effect of Hyperparameter Settings (see Section VI.D)
 
 Run script
 
