@@ -97,6 +97,8 @@ with different scripts
 - `run_trustregion.py`: learn by varying trust region parameter
 - `plot_param.py`: plot the learned results (see Fig. 4 in the paper)
 
+---
+
 ### 4 **Three-Finger Dexterous Manipulation (see Section VII in the paper)**
 
 #### 4.1 [examples/trifinger_task1](./examples/trifinger_task1): Cube Turning Manipulation Task (see Section VII.C)
