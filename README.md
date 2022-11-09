@@ -7,8 +7,8 @@ Manipulation***, submitted to _IEEE Transactions on Robotics_, 2022.
 
 
 <p float="left">
-<img src="figures/turning_webpage2.gif" width="300" />
-<img src="figures/moving_webpage2.gif" width="300" />
+<img src="figures/turning_webpage2.gif" width="350" />
+<img src="figures/moving_webpage2.gif" width="350" />
 </p>
 
 
