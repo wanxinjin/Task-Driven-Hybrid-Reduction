@@ -19,7 +19,7 @@ A webpage for this work is at [coming soon]
 
 ### Code Structure
 - **[planning](./planning)**: optimal control solvers
-    * **`MPC_LCS_R.py`** LCS-based MPC solver
+    * `MPC_LCS_R.py` LCS-based MPC solver
 - **[models](./models)** : dynamics models
     * `LCS.py`: generic linear complementarity system (LCS)
     * `Linear.py`: generic linear models (not used)
