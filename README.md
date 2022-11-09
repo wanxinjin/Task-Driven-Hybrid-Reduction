@@ -4,8 +4,12 @@
 This is the source code for the paper ***Task-Driven Hybrid Model Reduction for Dexterous
 Manipulation***, submitted to _IEEE Transactions on Robotics_, 2022.
 
+
+
+<p float="left">
 <img src="figures/turning_webpage2.gif" width="300" />
 <img src="figures/moving_webpage2.gif" width="300" />
+</p>
 
 
 The preprint is accessible at [coming soon]\
@@ -130,6 +134,7 @@ with
 - `show_hybrid_details`: show the correspondence between mode activation in LCS and physical interaction (see Section VII.C.2 in the paper)
 - `show_comp_lam`: learn the reduced-order LCS with different dimension of lambda (see Section VII.E.1)
 - `show_comp_curve`: plot the learned results for the reduced-order LCS with different dimension of lambda (see Fig. 12 in the paper)
+
 
 #### 4.2 [examples/trifinger_task2](./examples/trifinger_task2): Cube Moving  Manipulation Task  (see Section VII.D)  
 
