@@ -4,8 +4,8 @@
 This is the source code for the paper ***Task-Driven Hybrid Model Reduction for Dexterous
 Manipulation***, submitted to _IEEE Transactions on Robotics_, 2022.
 
-<img src="figures/turning_webpage2.gif" width="320" />
-<img src="figures/moving_webpage2.gif" width="320" />
+<img src="figures/turning_webpage2.gif" width="300" />
+<img src="figures/moving_webpage2.gif" width="300" />
 
 
 The preprint is accessible at [coming soon]\
