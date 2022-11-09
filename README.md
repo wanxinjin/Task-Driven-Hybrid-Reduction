@@ -21,9 +21,9 @@ A webpage for this work is at [coming soon]
 - **[planning](./planning)**: optimal control solvers
     * **`MPC_LCS_R.py`** LCS-based MPC solver
 - **[models](./models)** : dynamics models
-    * **`LCS.py`**: generic linear complementarity system (LCS)
-    * **`Linear.py`**: generic linear models (not used)
-    * **`NN.py`**: generic neural network models (not used)
+    * `LCS.py`: generic linear complementarity system (LCS)
+    * `Linear.py`: generic linear models (not used)
+    * `NN.py`: generic neural network models (not used)
 - **[env](./env)**: environments
     * **[gym_env](./env/gym_env)**: Three-Finger Manipulation MuJoCo Environment
         * **[mujoco_core](./env/gym_env/mujoco_core)**: core gym API modules (independent of mujoco-py)
