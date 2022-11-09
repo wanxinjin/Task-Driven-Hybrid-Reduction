@@ -1,11 +1,11 @@
-# Task-Driven Hybrid Model Reduction for Dexterous Manipulation
+## Task-Driven Hybrid Model Reduction for Dexterous Manipulation
 
 
 This is the source code for the paper ***Task-Driven Hybrid Model Reduction for Dexterous
 Manipulation***, submitted to _IEEE Transactions on Robotics_, 2022.
 
-<img src="figures/turning_webpage2.gif" width="380" />
-<img src="figures/moving_webpage2.gif" width="380" />
+<img src="figures/turning_webpage2.gif" width="320" />
+<img src="figures/moving_webpage2.gif" width="320" />
 
 
 The preprint is accessible at [coming soon]\
@@ -13,8 +13,7 @@ A webpage for this work is at [coming soon]
 
 ---
 
-## Code Structure
-
+### Code Structure
 - **[planning](./planning)**: optimal control solvers
     * **`MPC_LCS_R.py`** LCS-based MPC solver
 - **[models](./models)** : dynamics models
@@ -41,16 +40,16 @@ A webpage for this work is at [coming soon]
 
 ---
 
-## 2. Important Dependencies and Note
-
+### 2. Important Dependencies and Note
 - [CasADi](https://web.casadi.org/get/)
 - [MuJoCo Python Bindings](https://pypi.org/project/mujoco/)
 
 The codes have been tested and run smoothly with Python 3.9 on MacBook Pro (Apple M1 Pro)\
 **Before run examples, you may want to add the project directory to your python path.**
+
 ---
 
-## 3 **Model Reduction for Synthetic Hybrid Control System (see Section VI in the paper)**
+### 3 **Model Reduction for Synthetic Hybrid Systems (Section VI in the paper)**
 
 #### **[examples/lcs/lcs_example1](./examples/lcs/lcs_example1)**: Illustration of Learning Progress (see Section VI.C.1): 
 
@@ -98,9 +97,9 @@ with different scripts
 - `run_trustregion.py`: learn by varying trust region parameter
 - `plot_param.py`: plot the learned results (see Fig. 4 in the paper)
 
-## 4 **Three-Finger Dexterous Manipulation (see Section VII in the paper)**
+### 4 **Three-Finger Dexterous Manipulation (see Section VII in the paper)**
 
-### 4.1 [examples/trifinger_task1](./examples/trifinger_task1): Cube Turning Manipulation Task (see Section VII.C)
+#### 4.1 [examples/trifinger_task1](./examples/trifinger_task1): Cube Turning Manipulation Task (see Section VII.C)
 
 Run the main learning script:
 
@@ -130,7 +129,7 @@ with
 - `show_comp_lam`: learn the reduced-order LCS with different dimension of lambda (see Section VII.E.1)
 - `show_comp_curve`: plot the learned results for the reduced-order LCS with different dimension of lambda (see Fig. 12 in the paper)
 
-### 4.2 [examples/trifinger_task2](./examples/trifinger_task2): Cube Moving  Manipulation Task  (see Section VII.D)  
+#### 4.2 [examples/trifinger_task2](./examples/trifinger_task2): Cube Moving  Manipulation Task  (see Section VII.D)  
 
 Run the main learning script:
 
