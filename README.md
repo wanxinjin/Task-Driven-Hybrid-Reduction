@@ -49,7 +49,10 @@ A webpage for this work is at [coming soon]
 - [MuJoCo Python Bindings](https://pypi.org/project/mujoco/)
 
 The codes have been tested and run smoothly with Python 3.9 on MacBook Pro (Apple M1 Pro)\
-**Before run examples, you may want to add the project directory to your python path.**
+**Before run examples, you may want to add the project directory to your PYTHONPATH.**
+```
+$ export PYTHONPATH=/path/to/this/repo:$PYTHONPATH
+```
 
 ---
 
