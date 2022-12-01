@@ -2,8 +2,7 @@
 
 
 This is the source code for the paper ***Task-Driven Hybrid Model Reduction for Dexterous
-Manipulation***, submitted to _IEEE Transactions on Robotics_, 2022.
-
+Manipulation***, by [Wanxin Jin](https://wanxinjin.github.io/) and [Michael Posa](https://dair.seas.upenn.edu/), submitted to _IEEE Transactions on Robotics_, 2022.
 
 
 <p float="left">
@@ -12,8 +11,8 @@ Manipulation***, submitted to _IEEE Transactions on Robotics_, 2022.
 </p>
 
 
-The preprint is accessible at [coming soon]\
-A webpage for this work is at [coming soon]
+Preprint:  https://arxiv.org/abs/2211.16657 \
+Webpage: https://wanxinjin.github.io/td_hybridreduction/
 
 ---
 
@@ -172,6 +171,15 @@ with
 ----
 
 ### 5 Citation 
-coming soon...
+If you find this project helpful in your publications, please consider citing our paper.
+```
+@article{jin2022hybrid,
+  title={Task-Driven Hybrid Model Reduction for Dexterous Manipulation},
+  author={Jin, Wanxin and Posa, Michael},
+  journal={arXiv preprint arXiv:2211.16657},
+  year={2022}
+}
+```
+
 
 
