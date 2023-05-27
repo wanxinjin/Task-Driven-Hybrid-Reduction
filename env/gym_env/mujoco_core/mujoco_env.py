@@ -138,7 +138,7 @@ class BaseMujocoEnv(gym.Env):
             return_info: bool = False,
             options: Optional[dict] = None,
     ):
-        super().reset(seed=seed)
+        # super().reset()
 
         self._reset_simulation()
 
