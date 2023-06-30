@@ -406,7 +406,11 @@ class TriFingerQuasiStaticGroundRotateEnv(MujocoEnv, utils.EzPickle):
     def control_dim(self):
         return 6
 
-    def init_cost_api(self):
+    def init_cost_api(self, path_cost_goal_weight=2.00,
+                      path_cost_contact_weight=10.00,
+                      path_cost_control=0.01,
+                      final_cost_goal_weight=10.00,
+                      final_cost_contact_weight=2.00):
         """
             To define this cost function API, you need to have casadi installed
             in your python environment.
@@ -458,9 +462,9 @@ class TriFingerQuasiStaticGroundRotateEnv(MujocoEnv, utils.EzPickle):
 
         # --------------------------------------- define cost function  ---------------------------------
         # path cost for random target
-        w_contact_dist = 10.00
-        w_angle_dist = 2.00
-        w_control = 0.01
+        w_contact_dist = path_cost_contact_weight
+        w_angle_dist = path_cost_goal_weight
+        w_control = path_cost_control
 
         path_weights = casadi.vertcat(w_contact_dist,
                                       w_angle_dist)
@@ -469,8 +473,8 @@ class TriFingerQuasiStaticGroundRotateEnv(MujocoEnv, utils.EzPickle):
                                                       [casadi.dot(path_weights, features) + w_control * control_cost])
 
         # final cost for random target
-        w_contact_dist = 2.00
-        w_angle_dist = 10.
+        w_contact_dist = final_cost_contact_weight
+        w_angle_dist = final_cost_goal_weight
 
         final_weights = casadi.vertcat(w_contact_dist,
                                        w_angle_dist)

@@ -1,6 +1,5 @@
 from casadi import *
 import time
-import wandb
 
 from env.gym_env.trifinger_quasistaic_ground_rotate_continuous import TriFingerQuasiStaticGroundRotateEnv
 from env.util.rollout import rollout_mpcReceding, rollout_randPolicy
@@ -11,20 +10,22 @@ from util.optim_gd import Adam
 from util.buffer import BufferTraj
 from util.logger import save_data
 
-wandb.init(project="training_task1", entity="wanxin", mode="disabled")
-
-n_lam = 5
+cost_weights = dict(path_cost_goal_weight=2,
+                    path_cost_contact_weight=10.00,
+                    path_cost_control=0.01,
+                    final_cost_goal_weight=10,
+                    final_cost_contact_weight=100.00)
 
 #  ---------------------------- set save dir ------------------------
 np.random.seed(300)
 start_time = time.time()
-save_dir = './results/cmp/'
-save_data_name = 'task1_lam' + str(n_lam)
+save_dir = 'results/weights'
+save_data_name = 'task1_final_weight_' + 'g10c100'
 saved_info = dict()
 
 #  ---------------------------- load mujoco trifinger env ------------
 env = TriFingerQuasiStaticGroundRotateEnv()
-env.target_cube_angle = np.random.uniform(low=-1.5, high=1.5, size=(200,))
+env.target_cube_angle = np.random.uniform(low=-1.5, high=1.5, size=(500,))
 env.init_cube_angle = 0.0
 env.random_mag = 0.05
 env.reset()
@@ -34,7 +35,7 @@ saved_info.update(env_init_cube_angle=env.init_cube_angle)
 saved_info.update(env_random_mag=env.random_mag)
 
 #  ---------------------------- create reduced-order lcs model -------
-reduced_n_lam = n_lam
+reduced_n_lam = 5
 c = 0.0 * np.ones(reduced_n_lam)
 stiff = .1
 dyn = LCDyn(n_x=env.state_dim, n_u=env.control_dim, n_lam=reduced_n_lam, c=c, stiff=stiff)
@@ -44,9 +45,12 @@ saved_info.update(model_c=c)
 saved_info.update(model_stiff=stiff)
 
 #  ---------------------------- define task cost function ------------
-env.init_cost_api()
+env.init_cost_api(**cost_weights)
 path_cost_fn = env.csd_param_path_cost_fn
 final_cost_fn = env.csd_param_final_cost_fn
+
+# save
+saved_info.update(cost_weights=cost_weights)
 
 # ---------------------- create a mpc for reduced-order lcs ----------
 mpc_horizon = 5
@@ -126,10 +130,6 @@ for _ in range(n_rollout_mpc):
     # save to buffer
     buffer.addRollout(rollout)
 
-# wandb log
-wandb.log({"cost": np.mean(rollouts_cost)})
-wandb.log({"model error": np.mean(rollouts_model_error)})
-
 # initial training of model using random data
 res = trainer.train(x_batch=buffer.x_data,
                     u_batch=buffer.u_data,
@@ -176,7 +176,7 @@ for k in range(n_iter):
         rollout = rollout_mpcReceding(env=env, rollout_horizon=rollout_horizon,
                                       mpc=mpc, mpc_aux=dyn_aux_guess,
                                       mpc_param=mpc_param,
-                                      render=False)
+                                      render=True)
 
         # take out the cost and model error
         rollouts_cost.append(rollout['cost'])
@@ -210,15 +210,6 @@ for k in range(n_iter):
           '{:.4}'.format(np.std(rollouts_cost)), '  Each cost:', avg_each_cost_rollouts, '  ME:',
           '{:.4}'.format(np.mean(rollouts_model_error)), '(+/-)',
           '{:.4}'.format(np.std(rollouts_model_error)), '  train eval:', '{:.4}'.format(model_eval_loss))
-
-    # ---------- do wandb log
-    wandb.log({"cost": np.mean(rollouts_cost),
-               "model error": np.mean(rollouts_model_error),
-               'contact dist': avg_each_cost_rollouts[0],
-               'ori dist': avg_each_cost_rollouts[1],
-               'control effort': avg_each_cost_rollouts[2],
-               'bound size': np.linalg.norm(u_ub - u_lb),
-               'final ori dist': np.mean(rollouts_finalori_cost)})
 
     # ---------- save
     trace_trust_region.append(dict(u_lb=u_lb, u_ub=u_ub))

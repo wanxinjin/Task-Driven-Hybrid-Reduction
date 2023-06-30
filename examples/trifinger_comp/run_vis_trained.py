@@ -8,16 +8,17 @@ from planning.MPC_LCS_R import MPCLCSR
 from util.logger import load_data
 from diagnostics.lcs_analysis import LCSAnalyser
 
-np.random.seed(1000)
+np.random.seed(4000)
 
 #  ---------------------------- set save dir ------------------------
-save_dir = './results/lam5'
-save_data_name = 'task1_lam5_rand400'
+save_dir = 'results/weights/'
+save_data_name = 'task1_final_weight_g0.1c1'
 learned_info = load_data(data_name=save_data_name, save_dir=save_dir)
 
 #  ---------------------------- full model ---------------------------
 env = TriFingerQuasiStaticGroundRotateEnv()
 env.target_cube_angle = learned_info['env_target_cube_angle']
+# env.target_cube_angle = np.random.uniform(low=-1.5, high=-1.4, size=(500,))
 env.init_cube_angle = learned_info['env_init_cube_angle']
 env.random_mag = learned_info['env_random_mag']
 env.reset()
@@ -31,12 +32,12 @@ dyn = LCDyn(n_x=env.state_dim, n_u=env.control_dim, n_lam=reduced_n_lam,
 
 # ------------------ define the task cost function -------------------
 if 'cost_weights' in learned_info:
+    print('hahah')
     env.init_cost_api(**learned_info['cost_weights'])
 else:
     env.init_cost_api()
 path_cost_fn = env.csd_param_path_cost_fn
 final_cost_fn = env.csd_param_final_cost_fn
-
 
 # ---------------------- create a mpc planner ------------------------
 mpc_horizon = learned_info['mpc_horizon']
@@ -92,4 +93,3 @@ while True:
                         mpc=mpc, mpc_aux=dyn_aux,
                         mpc_param=mpc_param,
                         render=True, debug_mode=False, print_lam=True)
-
